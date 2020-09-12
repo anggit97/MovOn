@@ -1,0 +1,136 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    buildToolsVersion Releases.buildToolsVersion
+    compileSdkVersion Releases.targetSdkVersion
+
+    defaultConfig {
+        applicationId ApplicationId.id
+        minSdkVersion Releases.minSdkVersion
+        targetSdkVersion Releases.targetSdkVersion
+        versionCode Releases.versionCode
+        versionName Releases.versionName
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BASE_URL", baseUrl)
+            buildConfigField("String", "API_KEY", apiKey)
+        }
+        debug{
+            buildConfigField("String", "BASE_URL", baseUrl)
+            buildConfigField("String", "API_KEY", apiKey)
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin/'
+        main.java.srcDirs += 'build/generated/source/protos/main/java'
+        test.java.srcDirs += 'src/test/kotlin/'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    //Android Support
+    implementation AndroidSupport.coreKtx
+    implementation AndroidSupport.appCompat
+    implementation AndroidSupport.constraintLayout
+    implementation AndroidSupport.design
+    implementation AndroidSupport.recyclerview
+    implementation AndroidSupport.cardView
+
+    //Networking
+    implementation Retrofit.retrofit
+    implementation Retrofit.gson
+    implementation Retrofit.gsonConverter
+    implementation Retrofit.okHttpLogging
+    implementation Retrofit.coroutinesAdapter
+
+    //Coroutine
+    implementation Coroutines.test
+
+    //Room
+    implementation Room.room
+    kapt Room.roomCompiler
+    implementation Room.roomKtx
+
+    //Jetpack
+    implementation Jetpack.lifecycle
+    kapt Jetpack.lifecycleCompiler
+    implementation Jetpack.appInitializer
+
+    //Navigation Component
+    implementation Navigation.navComponentFragment
+    implementation Navigation.navComponentUi
+
+    //Shimmer
+    implementation Shimmer.shimmer
+
+    //Lottie
+    implementation Lottie.lottie
+
+    //view pager indicator
+    implementation PageIndicator.pageIndicator
+
+    //Font Adapter
+    implementation FontAdapter.calligraphy
+    implementation FontAdapter.viewPump
+
+    //dagger
+    implementation Dagger.dagger
+    kapt Dagger.daggerCompiler
+
+    //stheto
+    implementation Stheto.stheto
+
+    //button
+    implementation Button.fancy
+
+    //photopreview
+    implementation PhotoView.photoView
+
+    //vvalidator
+    implementation Validator.vValidator
+
+    //exoplayer
+    implementation ExoPlayer.exoPlayer
+    implementation ExoPlayer.core
+    implementation ExoPlayer.dash
+    implementation ExoPlayer.ui
+
+    //Test
+    testImplementation Testing.junit
+    testImplementation Testing.mockitoCore
+    testImplementation Testing.archCore
+    androidTestImplementation Testing.rules
+    androidTestImplementation Testing.runner
+    androidTestImplementation Testing.espressoCore
+    testImplementation Testing.mockitoInline
+
+    //core
+    implementation project(Modules.core)
+}

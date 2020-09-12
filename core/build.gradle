@@ -1,0 +1,44 @@
+apply from: "$rootDir/common.gradle"
+
+dependencies{
+
+    /*Android Support*/
+    implementation AndroidSupport.design
+    implementation AndroidSupport.appCompat
+    implementation AndroidSupport.constraintLayout
+
+    //Jetpack
+    implementation Jetpack.viewModel
+
+    //Navigation Component
+    implementation Navigation.navComponentFragment
+    implementation Navigation.navComponentUi
+
+    /*Glide*/
+    implementation Glide.glide
+    kapt Glide.glideCompiler
+
+    /*Font Adapter*/
+    implementation FontAdapter.calligraphy
+    implementation FontAdapter.viewPump
+
+    /*Coroutine*/
+    implementation Coroutines.core
+    implementation Coroutines.android
+
+    //Networking
+    implementation Retrofit.retrofit
+    implementation Retrofit.gson
+    implementation Retrofit.gsonConverter
+    implementation Retrofit.okHttpLogging
+    implementation Retrofit.coroutinesAdapter
+
+    //Test
+    testImplementation Testing.junit
+    testImplementation Testing.mockitoCore
+    testImplementation Testing.archCore
+    androidTestImplementation Testing.rules
+    androidTestImplementation Testing.runner
+    androidTestImplementation Testing.espressoCore
+    testImplementation Testing.mockitoInline
+}
