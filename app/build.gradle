@@ -28,10 +28,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "BASE_URL", baseUrl)
             buildConfigField("String", "API_KEY", apiKey)
+            buildConfigField("String", "POSTER_IMAGE_URL", moviePosterImageUrl)
         }
         debug{
             buildConfigField("String", "BASE_URL", baseUrl)
             buildConfigField("String", "API_KEY", apiKey)
+            buildConfigField("String", "POSTER_IMAGE_URL", moviePosterImageUrl)
         }
     }
 
