@@ -53,4 +53,8 @@ data class Movie(
     fun getPoster(): String {
         return BuildConfig.POSTER_IMAGE_URL + posterPath
     }
+
+    fun getBannerMovie(): String {
+        return BuildConfig.POSTER_IMAGE_URL + backdropPath
+    }
 }

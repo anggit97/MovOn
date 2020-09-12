@@ -48,17 +48,94 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <include
-                    android:id="@+id/popularMovie"
-                    layout="@layout/container_popular_movie" />
+                <TextView
+                    android:id="@+id/tvLabelPopularMovie"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:text="@string/popular_movie"
+                    android:textColor="@color/colorSteelGray"
+                    android:textSize="@dimen/font_large"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <include
-                    android:id="@+id/topRated"
-                    layout="@layout/container_top_rated_movie" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPopularMovie"
+                    android:layout_width="@dimen/dimen_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvLabelPopularMovie"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/row_item_popular_movie" />
 
-                <include
-                    android:id="@+id/nowPlaying"
-                    layout="@layout/container_now_playing_movie" />
+                <TextView
+                    android:id="@+id/tvLabelTopRated"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:text="@string/top_rated"
+                    android:textColor="@color/colorSteelGray"
+                    android:textSize="@dimen/font_large"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                    app:layout_constraintTop_toBottomOf="@id/rvPopularMovie" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTopRatedMovie"
+                    android:layout_width="@dimen/dimen_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvLabelTopRated"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/row_item_movie_with_title" />
+
+                <TextView
+                    android:id="@+id/tvLabelNowPlaying"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:text="@string/now_playing"
+                    android:textColor="@color/colorSteelGray"
+                    android:textSize="@dimen/font_large"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                    app:layout_constraintTop_toBottomOf="@id/rvTopRatedMovie" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvNowPlayingMovie"
+                    android:layout_width="@dimen/dimen_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvLabelNowPlaying"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/row_item_movie_with_title" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guidelineLeft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/dimen_16" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guidelineRight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/dimen_16" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
