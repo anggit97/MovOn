@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".feature.main.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -73,6 +74,16 @@
                     tools:itemCount="3"
                     tools:listitem="@layout/row_item_popular_movie" />
 
+                <include
+                    android:id="@+id/loadingPopularMovie"
+                    layout="@layout/base_loading_banner"
+                    android:layout_width="@dimen/dimen_0"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvLabelPopularMovie" />
+
                 <TextView
                     android:id="@+id/tvLabelTopRated"
                     android:layout_width="0dp"
@@ -97,6 +108,16 @@
                     app:layout_constraintTop_toBottomOf="@id/tvLabelTopRated"
                     tools:itemCount="3"
                     tools:listitem="@layout/row_item_movie_with_title" />
+
+                <include
+                    android:id="@+id/loadingTopRatedMovie"
+                    layout="@layout/base_loading_list_with_title"
+                    android:layout_width="@dimen/dimen_0"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvLabelTopRated" />
 
                 <TextView
                     android:id="@+id/tvLabelNowPlaying"
@@ -125,6 +146,16 @@
                     app:layout_constraintVertical_bias="0"
                     tools:itemCount="3"
                     tools:listitem="@layout/row_item_movie_with_title" />
+
+                <include
+                    android:id="@+id/loadingNowPlayingMovie"
+                    layout="@layout/base_loading_list_with_title"
+                    android:layout_width="@dimen/dimen_0"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvLabelNowPlaying" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guidelineLeft"

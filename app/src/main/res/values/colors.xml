@@ -17,5 +17,6 @@
     <color name="colorDoveGrayTransparent">#88707070</color>
     <color name="colorGallery">#EEEEEE</color>
     <color name="colorAthensGray">#EBEDF2</color>
+    <color name="colorAlto">#DDDDDD</color>
     <color name="colorBlack">#000000</color>
 </resources>

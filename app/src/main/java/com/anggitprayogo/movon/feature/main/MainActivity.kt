@@ -11,6 +11,10 @@ import com.anggitprayogo.movon.feature.main.adapter.NowPlayingMovieAdapter
 import com.anggitprayogo.movon.feature.main.adapter.PopularMovieAdapter
 import com.anggitprayogo.movon.feature.main.adapter.TopRatedMovieAdapter
 import com.eoa.tech.core.base.BaseActivity
+import com.eoa.tech.core.util.ext.setGone
+import com.eoa.tech.core.util.ext.setInvisible
+import com.eoa.tech.core.util.ext.setVisible
+import com.eoa.tech.core.util.state.LoaderState
 import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
@@ -33,6 +37,24 @@ class MainActivity : BaseActivity() {
         initViewModel()
         initRecyclerView()
         observeViewModel()
+        onActionSwipeListener()
+    }
+
+    private fun onActionSwipeListener() {
+        with(binding) {
+            swipeRefreshLayout.setOnRefreshListener {
+                swipeRefreshLayout.isRefreshing = false
+                fetchData()
+            }
+        }
+    }
+
+    private fun fetchData() {
+        with(viewModel) {
+            getPopularMovies()
+            getTopRatedMovies()
+            getNowPlayingMovies()
+        }
     }
 
     private fun initRecyclerView() {
@@ -76,6 +98,22 @@ class MainActivity : BaseActivity() {
             nowPlayingMovies.observe(this@MainActivity, {
                 it?.let { nowPlayingMovies -> showNowPlayingMovies(nowPlayingMovies) }
             })
+
+            loadingNowPlayingMovies.observe(this@MainActivity, {
+                it?.let { loading -> handleLoadingNowPlayingMovie(loading) }
+            })
+        }
+    }
+
+    private fun handleLoadingNowPlayingMovie(loading: LoaderState) {
+        with(binding) {
+            if (loading is LoaderState.ShowLoading) {
+                rvNowPlayingMovie.setInvisible()
+                loadingNowPlayingMovie.root.setVisible()
+            } else {
+                rvNowPlayingMovie.setVisible()
+                loadingNowPlayingMovie.root.setInvisible()
+            }
         }
     }
 
@@ -88,6 +126,22 @@ class MainActivity : BaseActivity() {
             topRatedMovies.observe(this@MainActivity, {
                 it?.let { topRatedMovies -> showTopRatedMovies(topRatedMovies) }
             })
+
+            loadingTopRatedMovies.observe(this@MainActivity, {
+                it?.let { loading -> handleLoadingTopRatedMovie(loading) }
+            })
+        }
+    }
+
+    private fun handleLoadingTopRatedMovie(loading: LoaderState) {
+        with(binding) {
+            if (loading is LoaderState.ShowLoading) {
+                rvTopRatedMovie.setInvisible()
+                loadingTopRatedMovie.root.setVisible()
+            } else {
+                rvTopRatedMovie.setVisible()
+                loadingTopRatedMovie.root.setInvisible()
+            }
         }
     }
 
@@ -100,6 +154,22 @@ class MainActivity : BaseActivity() {
             popularMovies.observe(this@MainActivity, {
                 it?.let { popularMovies -> showPopularMovie(popularMovies) }
             })
+
+            loadingPopularMovie.observe(this@MainActivity, {
+                it?.let { loading -> handleLoadingPopularMovie(loading) }
+            })
+        }
+    }
+
+    private fun handleLoadingPopularMovie(loading: LoaderState) {
+        with(binding) {
+            if (loading is LoaderState.ShowLoading) {
+                rvPopularMovie.setInvisible()
+                loadingPopularMovie.root.setVisible()
+            } else {
+                rvPopularMovie.setVisible()
+                loadingPopularMovie.root.setInvisible()
+            }
         }
     }
 
