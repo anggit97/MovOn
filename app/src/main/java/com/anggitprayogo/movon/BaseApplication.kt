@@ -1,6 +1,8 @@
 package com.anggitprayogo.movon
 
 import android.app.Application
+import com.anggitprayogo.movon.di.component.AppComponent
+import com.anggitprayogo.movon.di.component.DaggerAppComponent
 
 
 /**
@@ -9,4 +11,7 @@ import android.app.Application
  */
 class BaseApplication: Application(){
 
+    val appComponent: AppComponent by lazy {
+        DaggerAppComponent.factory().create(applicationContext)
+    }
 }
