@@ -32,19 +32,26 @@ class MainViewModel @Inject constructor(
 ) : BaseViewModel(dispatcher), MainViewModelContract {
 
     /**
+     * General Error
+     */
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String>
+        get() = _error
+
+    /**
+     * Network Error
+     */
+    private val _networkError = MutableLiveData<String>()
+    val networkError: LiveData<String>
+        get() = _networkError
+
+    /**
      * Popular Movies
      */
     private val _loadingPopularMovie = MutableLiveData<LoaderState>()
     val loadingPopularMovie: LiveData<LoaderState>
         get() = _loadingPopularMovie
 
-    private val _errorPopularMovie = MutableLiveData<String>()
-    val errorPopularMovie: LiveData<String>
-        get() = _errorPopularMovie
-
-    private val _networkPopularMovie = MutableLiveData<String>()
-    val networkPopularMovie: LiveData<String>
-        get() = _networkPopularMovie
 
     private val _popularMovies = MutableLiveData<MoviesResponse>()
     val popularMovies: LiveData<MoviesResponse>
@@ -58,13 +65,6 @@ class MainViewModel @Inject constructor(
     val loadingTopRatedMovies: LiveData<LoaderState>
         get() = _loadingTopRatedMovies
 
-    private val _errorTopRatedMovies = MutableLiveData<String>()
-    val errorTopRatedMovies: LiveData<String>
-        get() = _errorTopRatedMovies
-
-    private val _networkTopRatedMovies = MutableLiveData<String>()
-    val networkTopRatedMovies: LiveData<String>
-        get() = _networkTopRatedMovies
 
     private val _topRatedMovies = MutableLiveData<MoviesResponse>()
     val topRatedMovies: LiveData<MoviesResponse>
@@ -77,14 +77,6 @@ class MainViewModel @Inject constructor(
     private val _loadingNowPlayingMovies = MutableLiveData<LoaderState>()
     val loadingNowPlayingMovies: LiveData<LoaderState>
         get() = _loadingNowPlayingMovies
-
-    private val _errorNowPlayingMovies = MutableLiveData<String>()
-    val errorNowPlayingMovies: LiveData<String>
-        get() = _errorNowPlayingMovies
-
-    private val _networkNowPlayingMovies = MutableLiveData<String>()
-    val networkNowPlayingMovies: LiveData<String>
-        get() = _networkNowPlayingMovies
 
     private val _nowPlayingMovies = MutableLiveData<MoviesResponse>()
     val nowPlayingMovies: LiveData<MoviesResponse>
@@ -103,8 +95,8 @@ class MainViewModel @Inject constructor(
             _loadingPopularMovie.value = LoaderState.HideLoading
             when (result) {
                 is ResultState.Success -> _popularMovies.value = result.data
-                is ResultState.Error -> _errorPopularMovie.value = result.error
-                is ResultState.NetworkError -> _networkPopularMovie.value = result.error
+                is ResultState.Error -> _error.value = result.error
+                is ResultState.NetworkError -> _networkError.value = result.error
             }
         }
     }
@@ -116,8 +108,8 @@ class MainViewModel @Inject constructor(
             _loadingTopRatedMovies.value = LoaderState.HideLoading
             when (result) {
                 is ResultState.Success -> _topRatedMovies.value = result.data
-                is ResultState.Error -> _errorNowPlayingMovies.value = result.error
-                is ResultState.NetworkError -> _networkNowPlayingMovies.value = result.error
+                is ResultState.Error -> _error.value = result.error
+                is ResultState.NetworkError -> _networkError.value = result.error
             }
         }
     }
@@ -129,8 +121,8 @@ class MainViewModel @Inject constructor(
             _loadingNowPlayingMovies.value = LoaderState.HideLoading
             when (result) {
                 is ResultState.Success -> _nowPlayingMovies.value = result.data
-                is ResultState.Error -> _errorNowPlayingMovies.value = result.error
-                is ResultState.NetworkError -> _networkNowPlayingMovies.value = result.error
+                is ResultState.Error -> _error.value = result.error
+                is ResultState.NetworkError -> _networkError.value = result.error
             }
         }
     }

@@ -14,6 +14,7 @@ import com.eoa.tech.core.base.BaseActivity
 import com.eoa.tech.core.util.ext.setGone
 import com.eoa.tech.core.util.ext.setInvisible
 import com.eoa.tech.core.util.ext.setVisible
+import com.eoa.tech.core.util.ext.toast
 import com.eoa.tech.core.util.state.LoaderState
 import javax.inject.Inject
 
@@ -91,6 +92,19 @@ class MainActivity : BaseActivity() {
         observePopularMovie()
         observeTopRatedMovie()
         observeNowPlayingMovies()
+        observeError()
+    }
+
+    private fun observeError() {
+        with(viewModel){
+            error.observe(this@MainActivity, {
+                it?.let { error  -> toast(error) }
+            })
+
+            networkError.observe(this@MainActivity, {
+                it?.let { error -> toast(error) }
+            })
+        }
     }
 
     private fun observeNowPlayingMovies() {
