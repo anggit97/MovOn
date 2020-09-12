@@ -90,6 +90,11 @@ class MainViewModel @Inject constructor(
     val nowPlayingMovies: LiveData<MoviesResponse>
         get() = _nowPlayingMovies
 
+    init {
+        getPopularMovies()
+        getTopRatedMovies()
+        getNowPlayingMovies()
+    }
 
     override fun getPopularMovies() {
         _loadingPopularMovie.value = LoaderState.ShowLoading
