@@ -1,7 +1,8 @@
-package com.anggitprayogo.movon
+package com.anggitprayogo.movon.feature.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.anggitprayogo.movon.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
