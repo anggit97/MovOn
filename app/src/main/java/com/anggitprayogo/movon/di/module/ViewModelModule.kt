@@ -1,9 +1,13 @@
 package com.anggitprayogo.movon.di.module
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.anggitprayogo.movon.feature.main.MainViewModel
 import com.eoa.tech.core.util.viewmodel.ViewModelFactory
+import com.eoa.tech.core.util.viewmodel.ViewModelKey
 import dagger.Binds
 import dagger.Module
+import dagger.multibindings.IntoMap
 
 
 /**
@@ -15,4 +19,9 @@ abstract class ViewModelModule {
 
     @Binds
     internal abstract fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainViewModel::class)
+    internal abstract fun bindHomeViewModel(viewModel: MainViewModel): ViewModel
 }
