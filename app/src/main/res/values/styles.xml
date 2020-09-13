@@ -12,4 +12,9 @@
         <item name="colorControlNormal">@color/colorFrenchGray</item>
         <item name="colorControlActivated">@color/colorAccent</item>
     </style>
+
+    <style name="TextAppearance.FontBold" parent="android:TextAppearance">
+        <!-- Custom Attr-->
+        <item name="fontPath">fonts/Inter-Bold-slnt=0.ttf</item>
+    </style>
 </resources>

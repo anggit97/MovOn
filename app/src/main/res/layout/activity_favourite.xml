@@ -28,6 +28,7 @@
 
             <TextView
                 android:id="@+id/tvAppName"
+                style="@style/TextAppearance.FontBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_16"
