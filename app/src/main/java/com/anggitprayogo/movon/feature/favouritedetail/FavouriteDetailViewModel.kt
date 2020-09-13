@@ -2,6 +2,7 @@ package com.anggitprayogo.movon.feature.favouritedetail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.anggitprayogo.movon.data.local.entity.MovieEntity
 import com.anggitprayogo.movon.domain.MovieUseCase
 import com.eoa.tech.core.base.BaseViewModel
@@ -58,19 +59,16 @@ class FavouriteDetailViewModel @Inject constructor(
 
 
     override fun getMovieDetailDb(movieId: String) {
-        launch {
-            val result = useCase.getMovieDetailByMovieId(movieId.toInt())
-            withContext(Dispatchers.Main) {
-                when (result) {
-                    is ResultState.Success -> _resultDetailFromDb.postValue(result.data)
-                    is ResultState.Error -> _error.postValue(result.error)
-                }
+        viewModelScope.launch {
+            when (val result = useCase.getMovieDetailByMovieId(movieId.toInt())) {
+                is ResultState.Success -> _resultDetailFromDb.postValue(result.data)
+                is ResultState.Error -> _error.postValue(result.error)
             }
         }
     }
 
     override fun insertMovieToDb(movieEntity: MovieEntity) {
-        launch {
+        viewModelScope.launch {
             try {
                 useCase.insertMovieToDb(movieEntity)
                 withContext(Dispatchers.Main) {
@@ -85,7 +83,7 @@ class FavouriteDetailViewModel @Inject constructor(
     }
 
     override fun deleteMovieFromDb(movieEntity: MovieEntity) {
-        launch {
+        viewModelScope.launch {
             try {
                 useCase.deleteMovieFromDb(movieEntity)
                 withContext(Dispatchers.Main) {

@@ -2,6 +2,7 @@ package com.anggitprayogo.movon.feature.favourite
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.anggitprayogo.movon.data.local.entity.MovieEntity
 import com.anggitprayogo.movon.domain.MovieUseCase
 import com.eoa.tech.core.base.BaseViewModel
@@ -45,13 +46,10 @@ class FavouriteListViewModel @Inject constructor(
     }
 
     override fun fetchAllMovies() {
-        launch {
-            val result = useCase.getFavouriteMovie()
-            withContext(Dispatchers.Main) {
-                when (result) {
-                    is ResultState.Success -> _resultMovies.postValue(result.data)
-                    is ResultState.Error -> _error.postValue(result.error)
-                }
+        viewModelScope.launch {
+            when (val result = useCase.getFavouriteMovie()) {
+                is ResultState.Success -> _resultMovies.postValue(result.data)
+                is ResultState.Error -> _error.postValue(result.error)
             }
         }
     }

@@ -81,28 +81,19 @@ dependencies {
 
     //Room
     implementation Room.room
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     kapt Room.roomCompiler
     implementation Room.roomKtx
 
     //Jetpack
     implementation Jetpack.lifecycle
     kapt Jetpack.lifecycleCompiler
-    implementation Jetpack.appInitializer
-
-    //Navigation Component
-    implementation Navigation.navComponentFragment
-    implementation Navigation.navComponentUi
+    implementation Jetpack.viewModel
 
     //Shimmer
     implementation Shimmer.shimmer
 
     //Lottie
     implementation Lottie.lottie
-
-    //view pager indicator
-    implementation PageIndicator.pageIndicator
 
     //Font Adapter
     implementation FontAdapter.calligraphy
@@ -114,15 +105,6 @@ dependencies {
 
     //stheto
     implementation Stheto.stheto
-
-    //button
-    implementation Button.fancy
-
-    //photopreview
-    implementation PhotoView.photoView
-
-    //vvalidator
-    implementation Validator.vValidator
 
     //Test
     testImplementation Testing.junit

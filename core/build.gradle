@@ -10,10 +10,6 @@ dependencies{
     //Jetpack
     implementation Jetpack.viewModel
 
-    //Navigation Component
-    implementation Navigation.navComponentFragment
-    implementation Navigation.navComponentUi
-
     /*Glide*/
     implementation Glide.glide
     kapt Glide.glideCompiler

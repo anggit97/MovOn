@@ -46,17 +46,6 @@ object Version {
      */
     const val archLifecycle = "2.0.0"
     const val viewModel = "2.2.0"
-    const val appInitializer = "1.0.0-alpha01"
-
-    /**
-     * Page Indicator
-     */
-    const val pageIndicator = "1.0.3"
-
-    /**
-     * Navigation Component
-     */
-    const val navigationComponent = "2.3.0"
 
     /**
      * Retrofit Network version
@@ -65,12 +54,6 @@ object Version {
     const val gson = "2.8.6"
     const val okhttpLogging = "3.11.0"
 
-    /**
-     * Firebase
-     */
-    const val firebaseAnalytics = "17.4.4"
-    const val firebaseCrashlytics = "17.1.1"
-    const val firebaseMessaging = "20.2.4"
 
     /**
      * Room
@@ -88,16 +71,6 @@ object Version {
     const val lottie = "2.8.0"
 
     /**
-     * PhotoView
-     */
-    const val photoView  = "2.3.0"
-
-    /**
-     * ExoPlayer
-     */
-    const val exoPlayer = "2.11.8"
-
-    /**
      * Font Adapter
      */
     const val calligraphy = "3.1.1"
@@ -107,16 +80,6 @@ object Version {
      * Stheto
      */
     const val stheto = "1.5.1"
-
-    /**
-     * Fancy Button
-     */
-    const val fancyButton = "1.9.1"
-
-    /**
-     * Validator
-     */
-    const val vvalidator = "0.5.2"
 
     /**
      * Test
@@ -150,14 +113,6 @@ object Jetpack {
     const val lifecycle = "androidx.lifecycle:lifecycle-extensions:${Version.archLifecycle}"
     const val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Version.archLifecycle}"
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Version.viewModel}"
-    const val appInitializer = "androidx.startup:startup-runtime:${Version.appInitializer}"
-}
-
-object Navigation {
-    const val navComponentFragment =
-        "androidx.navigation:navigation-fragment-ktx:${Version.navigationComponent}"
-    const val navComponentUi =
-        "androidx.navigation:navigation-ui-ktx:${Version.navigationComponent}"
 }
 
 object Coroutines {
@@ -180,21 +135,10 @@ object Retrofit {
         "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${Version.coroutinesAdapter}"
 }
 
-object Firebase {
-    const val analytics = "com.google.firebase:firebase-analytics:${Version.firebaseAnalytics}"
-    const val crashlytics =
-        "com.google.firebase:firebase-crashlytics:${Version.firebaseCrashlytics}"
-    const val messaging = "com.google.firebase:firebase-messaging:${Version.firebaseMessaging}"
-}
-
 object Room {
     const val room = "androidx.room:room-runtime:${Version.room}"
     const val roomCompiler = "androidx.room:room-compiler:${Version.room}"
     const val roomKtx = "androidx.room:room-ktx:${Version.room}"
-}
-
-object Validator {
-    const val vValidator = "com.afollestad:vvalidator:${Version.vvalidator}"
 }
 
 object Shimmer {
@@ -205,11 +149,6 @@ object Lottie {
     const val lottie = "com.airbnb.android:lottie:${Version.lottie}"
 }
 
-object PageIndicator {
-    const val pageIndicator =
-        "com.romandanylyk:pageindicatorview:${Version.pageIndicator}"
-}
-
 object FontAdapter {
     const val calligraphy = "io.github.inflationx:calligraphy3:${Version.calligraphy}"
     const val viewPump = "io.github.inflationx:viewpump:${Version.viewPump}"
@@ -217,21 +156,6 @@ object FontAdapter {
 
 object Stheto {
     const val stheto = "com.facebook.stetho:stetho:${Version.stheto}"
-}
-
-object Button {
-    const val fancy = "com.github.medyo:fancybuttons:${Version.fancyButton}"
-}
-
-object PhotoView{
-    const val photoView = "com.github.chrisbanes:PhotoView:${Version.photoView}"
-}
-
-object ExoPlayer{
-    const val exoPlayer = "com.google.android.exoplayer:exoplayer:${Version.exoPlayer}"
-    const val core = "com.google.android.exoplayer:exoplayer-core:${Version.exoPlayer}"
-    const val dash = "com.google.android.exoplayer:exoplayer-dash:${Version.exoPlayer}"
-    const val ui = "com.google.android.exoplayer:exoplayer-ui:${Version.exoPlayer}"
 }
 
 object Testing {

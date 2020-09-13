@@ -112,33 +112,28 @@ class MovieDetailViewModel @Inject constructor(
 
     override fun getReviewsByMovieId(movieId: String) {
         _state.value = LoaderState.ShowLoading
-        launch {
+        viewModelScope.launch {
             val result = useCase.getMovieReviewsByMovieId(movieId)
-            withContext(Dispatchers.Main) {
-                _state.value = LoaderState.HideLoading
-                when (result) {
-                    is ResultState.Success -> _resultReviews.value = result.data
-                    is ResultState.Error -> _error.value = result.error
-                    is ResultState.NetworkError -> _networkError.value = result.error
-                }
+            _state.value = LoaderState.HideLoading
+            when (result) {
+                is ResultState.Success -> _resultReviews.value = result.data
+                is ResultState.Error -> _error.value = result.error
+                is ResultState.NetworkError -> _networkError.value = result.error
             }
         }
     }
 
     override fun getMovieDetailDb(movieId: String) {
-        launch {
-            val result = useCase.getMovieDetailByMovieId(movieId.toInt())
-            withContext(Dispatchers.Main) {
-                when (result) {
-                    is ResultState.Success -> _resultDetailFromDb.postValue(result.data)
-                    is ResultState.Error -> _error.postValue(result.error)
-                }
+        viewModelScope.launch {
+            when (val result = useCase.getMovieDetailByMovieId(movieId.toInt())) {
+                is ResultState.Success -> _resultDetailFromDb.postValue(result.data)
+                is ResultState.Error -> _error.postValue(result.error)
             }
         }
     }
 
     override fun insertMovieToDb(movieEntity: MovieEntity) {
-        launch {
+        viewModelScope.launch {
             try {
                 useCase.insertMovieToDb(movieEntity)
                 withContext(Dispatchers.Main) {
@@ -153,7 +148,7 @@ class MovieDetailViewModel @Inject constructor(
     }
 
     override fun deleteMovieFromDb(movieEntity: MovieEntity) {
-        launch {
+        viewModelScope.launch {
             try {
                 useCase.deleteMovieFromDb(movieEntity)
                 withContext(Dispatchers.Main) {
