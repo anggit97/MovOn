@@ -2,6 +2,7 @@ package com.anggitprayogo.movon.di.module
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.anggitprayogo.movon.feature.detail.MovieDetailViewModel
 import com.anggitprayogo.movon.feature.main.MainViewModel
 import com.eoa.tech.core.util.viewmodel.ViewModelFactory
 import com.eoa.tech.core.util.viewmodel.ViewModelKey
@@ -24,4 +25,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     internal abstract fun bindHomeViewModel(viewModel: MainViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MovieDetailViewModel::class)
+    internal abstract fun bindMovieDetailViewModel(viewModel: MovieDetailViewModel): ViewModel
 }

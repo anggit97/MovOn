@@ -1,5 +1,7 @@
 package com.anggitprayogo.movon.data.repository
 
+import com.anggitprayogo.movon.data.remote.MovieDetail
+import com.anggitprayogo.movon.data.remote.MovieReviews
 import com.anggitprayogo.movon.data.remote.MoviesResponse
 import retrofit2.Response
 
@@ -10,9 +12,13 @@ import retrofit2.Response
  */
 interface MovieRepository {
 
-    suspend fun getPopularMovies() : Response<MoviesResponse>
+    suspend fun getPopularMovies(): Response<MoviesResponse>
 
-    suspend fun getTopRatedMovies() : Response<MoviesResponse>
+    suspend fun getTopRatedMovies(): Response<MoviesResponse>
 
-    suspend fun getNowPlayingMovies() : Response<MoviesResponse>
+    suspend fun getNowPlayingMovies(): Response<MoviesResponse>
+
+    suspend fun getDetailMovie(movieId: String): Response<MovieDetail>
+
+    suspend fun getMovieReviewsByMovieId(movieId: String): Response<MovieReviews>
 }

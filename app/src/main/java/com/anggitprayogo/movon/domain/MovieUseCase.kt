@@ -1,5 +1,7 @@
 package com.anggitprayogo.movon.domain
 
+import com.anggitprayogo.movon.data.remote.MovieDetail
+import com.anggitprayogo.movon.data.remote.MovieReviews
 import com.anggitprayogo.movon.data.remote.MoviesResponse
 import com.anggitprayogo.movon.data.repository.MovieRepository
 import com.eoa.tech.core.util.ext.safeApiCall
@@ -44,6 +46,28 @@ class MovieUseCase @Inject constructor(
             if (result.isSuccessful) {
                 ResultState.Success(result.body()!!)
             } else {
+                safeApiErrorHandling(result)
+            }
+        }
+    }
+
+    suspend fun getDetailMovie(movieId: String): ResultState<MovieDetail> {
+        return safeApiCall {
+            val result = movieRepository.getDetailMovie(movieId)
+            if (result.isSuccessful) {
+                ResultState.Success(result.body()!!)
+            } else {
+                safeApiErrorHandling(result)
+            }
+        }
+    }
+
+    suspend fun getMovieReviewsByMovieId(movieId: String): ResultState<MovieReviews> {
+        return safeApiCall {
+            val result = movieRepository.getMovieReviewsByMovieId(movieId)
+            try {
+                ResultState.Success(result.body()!!)
+            } catch (e: Exception) {
                 safeApiErrorHandling(result)
             }
         }

@@ -1,5 +1,7 @@
 package com.anggitprayogo.movon.data.repository
 
+import com.anggitprayogo.movon.data.remote.MovieDetail
+import com.anggitprayogo.movon.data.remote.MovieReviews
 import com.anggitprayogo.movon.data.remote.MoviesResponse
 import com.anggitprayogo.movon.data.routes.MovieDBService
 import retrofit2.Response
@@ -19,5 +21,13 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun getNowPlayingMovies(): Response<MoviesResponse> {
         return movieRemoteService.getNowPlayingMovies()
+    }
+
+    override suspend fun getDetailMovie(movieId: String): Response<MovieDetail> {
+        return movieRemoteService.getDetailMovie(movieId)
+    }
+
+    override suspend fun getMovieReviewsByMovieId(movieId: String): Response<MovieReviews> {
+        return movieRemoteService.getMovieReviewsByMovieId(movieId)
     }
 }

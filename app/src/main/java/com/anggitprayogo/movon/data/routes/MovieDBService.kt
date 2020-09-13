@@ -1,8 +1,11 @@
 package com.anggitprayogo.movon.data.routes
 
+import com.anggitprayogo.movon.data.remote.MovieDetail
+import com.anggitprayogo.movon.data.remote.MovieReviews
 import com.anggitprayogo.movon.data.remote.MoviesResponse
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 
 /**
@@ -19,4 +22,10 @@ interface MovieDBService {
 
     @GET("movie/now_playing")
     suspend fun getNowPlayingMovies() : Response<MoviesResponse>
+
+    @GET("movie/{movie_id}")
+    suspend fun getDetailMovie(@Path("movie_id") movieId: String): Response<MovieDetail>
+
+    @GET("movie/{movie_id}/reviews")
+    suspend fun getMovieReviewsByMovieId(@Path("movie_id") movieId: String): Response<MovieReviews>
 }
