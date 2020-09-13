@@ -77,8 +77,6 @@ dependencies {
 
     //Room
     implementation Room.room
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     kapt Room.roomCompiler
     implementation Room.roomKtx
 
@@ -119,12 +117,6 @@ dependencies {
 
     //vvalidator
     implementation Validator.vValidator
-
-    //exoplayer
-    implementation ExoPlayer.exoPlayer
-    implementation ExoPlayer.core
-    implementation ExoPlayer.dash
-    implementation ExoPlayer.ui
 
     //Test
     testImplementation Testing.junit

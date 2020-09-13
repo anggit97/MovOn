@@ -7,4 +7,6 @@
     <string name="reviews_header">Review</string>
     <string name="imdb_rating_template">IMDB %s/5.0</string>
     <string name="ex_review_content">The Dilwale Dulhania Le Jayenge is a film considered by most to be one of the greatest ever made. From The American Film Institute to as voted by users on the Internet Movie Database (IMDB) it is consider to be one of the best.</string>
+    <string name="message_empty_reviews_header">No review</string>
+    <string name="message_empty_reviews_body">Hmm, there is no reviews</string>
 </resources>

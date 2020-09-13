@@ -15,6 +15,8 @@ import com.anggitprayogo.movon.databinding.ActivityMovieDetailBinding
 import com.anggitprayogo.movon.feature.detail.adapter.ReviewsAdapter
 import com.eoa.tech.core.base.BaseActivity
 import com.eoa.tech.core.util.ext.load
+import com.eoa.tech.core.util.ext.setGone
+import com.eoa.tech.core.util.ext.setVisible
 import com.eoa.tech.core.util.ext.toast
 import javax.inject.Inject
 
@@ -48,10 +50,16 @@ class MovieDetailActivity : BaseActivity() {
     }
 
     private fun initRecyclerViewReviews() {
-        with(binding){
+        with(binding) {
             rvReviews.adapter = reviewsAdapter
-            rvReviews.layoutManager = LinearLayoutManager(this@MovieDetailActivity, LinearLayoutManager.VERTICAL, false)
-            rvReviews.addItemDecoration(DividerItemDecoration(this@MovieDetailActivity, LinearLayoutManager.VERTICAL))
+            rvReviews.layoutManager =
+                LinearLayoutManager(this@MovieDetailActivity, LinearLayoutManager.VERTICAL, false)
+            rvReviews.addItemDecoration(
+                DividerItemDecoration(
+                    this@MovieDetailActivity,
+                    LinearLayoutManager.VERTICAL
+                )
+            )
         }
     }
 
@@ -84,7 +92,7 @@ class MovieDetailActivity : BaseActivity() {
     }
 
     private fun handleStateReviews(reviews: MovieReviews) {
-        with(binding){
+        with(binding) {
             handleReviewEmptyState(reviews)
             tvReviewTotal.text = reviews.results.size.toString()
             reviewsList.clear()
@@ -94,14 +102,14 @@ class MovieDetailActivity : BaseActivity() {
     }
 
     private fun handleReviewEmptyState(reviews: MovieReviews) {
-        with(binding){
-//            if (reviews.results.isEmpty()){
-//                rvReviews.setGone()
-//                viewEmpty.setVisible()
-//            }else{
-//                rvReviews.setVisible()
-//                viewEmpty.setGone()
-//            }
+        with(binding) {
+            if (reviews.results.isEmpty()) {
+                rvReviews.setGone()
+                viewEmpty.root.setVisible()
+            } else {
+                rvReviews.setVisible()
+                viewEmpty.root.setGone()
+            }
         }
     }
 
