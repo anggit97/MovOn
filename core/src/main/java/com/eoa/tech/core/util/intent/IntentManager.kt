@@ -11,7 +11,7 @@ object IntentManager {
 
     fun createShareIntent(content: String): Intent {
         return Intent(Intent.ACTION_SEND).apply {
-            type = "plain/text"
+            type = "text/plain"
             putExtra(Intent.EXTRA_TEXT, content)
         }
     }
