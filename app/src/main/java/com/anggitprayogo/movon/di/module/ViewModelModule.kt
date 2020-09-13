@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.anggitprayogo.movon.feature.detail.MovieDetailViewModel
 import com.anggitprayogo.movon.feature.favourite.FavouriteListViewModel
+import com.anggitprayogo.movon.feature.favouritedetail.FavouriteDetailViewModel
 import com.anggitprayogo.movon.feature.main.MainViewModel
 import com.eoa.tech.core.util.viewmodel.ViewModelFactory
 import com.eoa.tech.core.util.viewmodel.ViewModelKey
@@ -36,4 +37,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(FavouriteListViewModel::class)
     internal abstract fun bindFavouriteListViewModel(viewModel: FavouriteListViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FavouriteDetailViewModel::class)
+    internal abstract fun bindFavouriteDetailViewModel(viewModel: FavouriteDetailViewModel): ViewModel
 }

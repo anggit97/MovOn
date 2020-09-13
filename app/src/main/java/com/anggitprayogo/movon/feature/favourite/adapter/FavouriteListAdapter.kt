@@ -1,5 +1,6 @@
 package com.anggitprayogo.movon.feature.favourite.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,7 +8,9 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.anggitprayogo.movon.R
 import com.anggitprayogo.movon.data.local.entity.MovieEntity
+import com.anggitprayogo.movon.feature.detail.MovieDetailActivity
 import com.anggitprayogo.movon.feature.favourite.FavouriteActivity
+import com.anggitprayogo.movon.feature.favouritedetail.FavouriteDetailActivity
 import com.eoa.tech.core.util.ext.load
 import kotlinx.android.synthetic.main.row_item_favourite_movie.view.*
 
@@ -70,10 +73,10 @@ class FavouriteListAdapter : RecyclerView.Adapter<FavouriteListAdapter.ViewHolde
                         "imageMain"
                     )
 
-//                val intent = Intent(itemView.context, FavouriteDetailActivity::class.java).apply {
-//                    putExtra(MovieDetailActivity.MOVIE_ID_KEY, movie.movieId.toString())
-//                }
-//                itemView.context.startActivity(intent, activityOptionsCompat.toBundle())
+                val intent = Intent(itemView.context, FavouriteDetailActivity::class.java).apply {
+                    putExtra(MovieDetailActivity.MOVIE_ID_KEY, movie.movieId.toString())
+                }
+                itemView.context.startActivity(intent, activityOptionsCompat.toBundle())
             }
         }
     }

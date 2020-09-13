@@ -10,6 +10,8 @@
         android:id="@+id/ivPoster"
         android:layout_width="@dimen/dimen_150"
         android:layout_height="@dimen/dimen_150"
+        android:layout_marginTop="@dimen/dimen_3"
+        android:layout_marginStart="@dimen/dimen_3"
         android:background="@color/colorFrenchGray"
         android:contentDescription="@string/app_name"
         android:scaleType="centerCrop"
