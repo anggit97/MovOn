@@ -11,7 +11,6 @@ import com.anggitprayogo.movon.feature.main.adapter.NowPlayingMovieAdapter
 import com.anggitprayogo.movon.feature.main.adapter.PopularMovieAdapter
 import com.anggitprayogo.movon.feature.main.adapter.TopRatedMovieAdapter
 import com.eoa.tech.core.base.BaseActivity
-import com.eoa.tech.core.util.ext.setGone
 import com.eoa.tech.core.util.ext.setInvisible
 import com.eoa.tech.core.util.ext.setVisible
 import com.eoa.tech.core.util.ext.toast
@@ -24,9 +23,9 @@ class MainActivity : BaseActivity() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: MainViewModel
 
-    private val popularMovieAdapter: PopularMovieAdapter by lazy { PopularMovieAdapter() }
-    private val topRatedMovieAdapter: TopRatedMovieAdapter by lazy { TopRatedMovieAdapter() }
-    private val nowPlayingMovieAdapter: NowPlayingMovieAdapter by lazy { NowPlayingMovieAdapter() }
+    private val popularMovieAdapter: PopularMovieAdapter by lazy { PopularMovieAdapter(this) }
+    private val topRatedMovieAdapter: TopRatedMovieAdapter by lazy { TopRatedMovieAdapter(this) }
+    private val nowPlayingMovieAdapter: NowPlayingMovieAdapter by lazy { NowPlayingMovieAdapter(this) }
 
     private lateinit var binding: ActivityMainBinding
 
@@ -96,9 +95,9 @@ class MainActivity : BaseActivity() {
     }
 
     private fun observeError() {
-        with(viewModel){
+        with(viewModel) {
             error.observe(this@MainActivity, {
-                it?.let { error  -> toast(error) }
+                it?.let { error -> toast(error) }
             })
 
             networkError.observe(this@MainActivity, {

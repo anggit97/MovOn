@@ -87,8 +87,8 @@ class MovieDetailViewModel @Inject constructor(
     /**
      * Network Error
      */
-    private val _networkError = MutableLiveData<Boolean>()
-    val networkError: LiveData<Boolean>
+    private val _networkError = MutableLiveData<String>()
+    val networkError: LiveData<String>
         get() = _networkError
 
     override fun getMovieDetail(movieId: String) {
@@ -98,13 +98,13 @@ class MovieDetailViewModel @Inject constructor(
             _state.value = LoaderState.HideLoading
             when (result) {
                 is ResultState.Success -> {
-                    _resultDetailMovie.postValue(result.data)
+                    _resultDetailMovie.value = result.data
                 }
                 is ResultState.Error -> {
-                    _error.postValue(result.error)
+                    _error.value = result.error
                 }
                 is ResultState.NetworkError -> {
-                    _networkError.postValue(true)
+                    _networkError.value = result.error
                 }
             }
         }
@@ -117,9 +117,9 @@ class MovieDetailViewModel @Inject constructor(
             withContext(Dispatchers.Main) {
                 _state.value = LoaderState.HideLoading
                 when (result) {
-                    is ResultState.Success -> _resultReviews.postValue(result.data)
-                    is ResultState.Error -> _error.postValue(result.error)
-                    is ResultState.NetworkError -> _networkError.postValue(true)
+                    is ResultState.Success -> _resultReviews.value = result.data
+                    is ResultState.Error -> _error.value = result.error
+                    is ResultState.NetworkError -> _networkError.value = result.error
                 }
             }
         }

@@ -13,8 +13,10 @@
         android:contentDescription="@string/app_name"
         android:scaleType="centerCrop"
         android:src="@color/colorFrenchGray"
+        android:transitionName="imageMain"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UnusedAttribute" />
 
     <TextView
         android:id="@+id/tvTitle"
