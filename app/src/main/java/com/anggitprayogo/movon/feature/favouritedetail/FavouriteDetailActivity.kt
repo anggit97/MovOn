@@ -6,8 +6,10 @@ import androidx.lifecycle.ViewModelProviders
 import com.anggitprayogo.movon.BaseApplication
 import com.anggitprayogo.movon.R
 import com.anggitprayogo.movon.data.local.entity.MovieEntity
+import com.anggitprayogo.movon.data.local.entity.ShareEntity
 import com.anggitprayogo.movon.databinding.ActivityFavouriteDetailBinding
 import com.anggitprayogo.movon.feature.detail.MovieDetailActivity.Companion.MOVIE_ID_KEY
+import com.anggitprayogo.movon.feature.share.ShareDialogBottomSheetFragment
 import com.eoa.tech.core.base.BaseActivity
 import com.eoa.tech.core.util.ext.load
 import com.eoa.tech.core.util.ext.toast
@@ -47,7 +49,24 @@ class FavouriteDetailActivity : BaseActivity() {
                     movieEntity?.let { it1 -> viewModel.insertMovieToDb(it1) }
                 }
             }
+
+            ivShare.setOnClickListener {
+                showShareBottomSheet()
+            }
         }
+    }
+
+    private fun showShareBottomSheet() {
+        val bundle = Bundle()
+        val movieShareEntity = ShareEntity(
+            movieEntity?.title,
+            movieEntity?.overview
+        )
+        bundle.putParcelable(ShareDialogBottomSheetFragment.MovieData, movieShareEntity)
+
+        val bottomSheet = ShareDialogBottomSheetFragment().newInstance()
+        bottomSheet?.arguments = bundle
+        bottomSheet?.show(supportFragmentManager, ShareDialogBottomSheetFragment.TAG)
     }
 
     private fun handleIntent() {
