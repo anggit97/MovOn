@@ -32,6 +32,8 @@ class MovieDetailActivity : BaseActivity() {
 
     private var movieId: String? = null
 
+    private var favouriteActive = false
+
     private val reviewsAdapter: ReviewsAdapter by lazy { ReviewsAdapter() }
     private var reviewsList = mutableListOf<Review>()
 
@@ -47,6 +49,33 @@ class MovieDetailActivity : BaseActivity() {
         observeViewModel()
         initRecyclerViewReviews()
         fetchData()
+        onActionClickListener()
+    }
+
+    private fun onActionClickListener() {
+        with(binding) {
+            ivFavourite.setOnClickListener {
+                setFavourite()
+            }
+        }
+    }
+
+    private fun setFavourite(){
+        if (favouriteActive) {
+            movieEntity?.let { it1 -> viewModel.deleteMovieFromDb(it1) }
+        } else {
+            val movieEntity = MovieEntity(
+                movieId = movieId?.toInt(),
+                title = movieDetail?.title,
+                genres = movieDetail?.getMetaData(),
+                vote = movieDetail?.getImdbRating(),
+                releaseDate = movieDetail?.releaseDate,
+                overview = movieDetail?.overview,
+                bannerUrl = movieDetail?.getBannerMovie(),
+                posterUrl = movieDetail?.getPosterMovie()
+            )
+            viewModel.insertMovieToDb(movieEntity)
+        }
     }
 
     private fun initRecyclerViewReviews() {
@@ -68,6 +97,7 @@ class MovieDetailActivity : BaseActivity() {
         movieId?.let {
             viewModel.getMovieDetail(it)
             viewModel.getReviewsByMovieId(it)
+            viewModel.getMovieDetailDb(it)
         }
     }
 
@@ -81,13 +111,44 @@ class MovieDetailActivity : BaseActivity() {
                 it?.let { handleStateReviews(it) }
             })
 
-            viewModel.networkError.observe(this@MovieDetailActivity, {
+            resultDetailFromDb.observe(this@MovieDetailActivity, {
+                it?.let { handleStateMovieDetailFromDb(it) }
+            })
+
+            resultInsertMovieToDb.observe(this@MovieDetailActivity, {
+                if (it) {
+                    movieId?.let { viewModel.getMovieDetailDb(it) }
+                    toast(getString(R.string.message_success_add_movie_from_favourite))
+                }
+            })
+
+            resultDeleteMovieFromDb.observe(this@MovieDetailActivity, {
+                if (it) {
+                    movieId?.let { viewModel.getMovieDetailDb(it) }
+                    toast(getString(R.string.message_success_remove_movie_from_favourite))
+                }
+            })
+
+            networkError.observe(this@MovieDetailActivity, {
                 it?.let { toast(it) }
             })
 
-            viewModel.error.observe(this@MovieDetailActivity, {
+            error.observe(this@MovieDetailActivity, {
                 it?.let { toast(it) }
             })
+        }
+    }
+
+    private fun handleStateMovieDetailFromDb(result: List<MovieEntity>) {
+        if (result.isEmpty()) {
+            favouriteActive = false
+            val icon = R.drawable.ic_baseline_favorite_border_24
+            binding.ivFavourite.setImageResource(icon)
+        } else {
+            movieEntity = result.first()
+            favouriteActive = true
+            val icon = R.drawable.ic_baseline_favorite_red_24
+            binding.ivFavourite.setImageResource(icon)
         }
     }
 

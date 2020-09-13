@@ -23,10 +23,10 @@ import javax.inject.Inject
  */
 interface MovieDetailViewModelContract {
     fun getMovieDetail(movieId: String)
-//    fun getMovieDetailDb(movieId: String)
     fun getReviewsByMovieId(movieId: String)
-//    fun insertMovieToDb(movieEntity: MovieEntity)
-//    fun deleteMovieFromDb(movieEntity: MovieEntity)
+    fun getMovieDetailDb(movieId: String)
+    fun insertMovieToDb(movieEntity: MovieEntity)
+    fun deleteMovieFromDb(movieEntity: MovieEntity)
 }
 
 class MovieDetailViewModel @Inject constructor(
@@ -125,45 +125,45 @@ class MovieDetailViewModel @Inject constructor(
         }
     }
 
-//    override fun getMovieDetailDb(movieId: String) {
-//        launch {
-//            val result = useCase.getMovieDetailByMovieId(movieId.toInt())
-//            withContext(Dispatchers.Main) {
-//                when (result) {
-//                    is ResultState.Success -> _resultDetailFromDb.postValue(result.data)
-//                    is ResultState.Error -> _error.postValue(result.error)
-//                }
-//            }
-//        }
-//    }
-//
-//    override fun insertMovieToDb(movieEntity: MovieEntity) {
-//        launch {
-//            try {
-//                useCase.insertMovieToDb(movieEntity)
-//                withContext(Dispatchers.Main) {
-//                    _resultInsertMovieToDb.postValue(true)
-//                }
-//            } catch (e: Exception) {
-//                withContext(Dispatchers.Main) {
-//                    _error.postValue(e.localizedMessage)
-//                }
-//            }
-//        }
-//    }
-//
-//    override fun deleteMovieFromDb(movieEntity: MovieEntity) {
-//        launch {
-//            try {
-//                useCase.deleteMovieFromDb(movieEntity)
-//                withContext(Dispatchers.Main) {
-//                    _resultDeleteMovieFromDb.postValue(true)
-//                }
-//            } catch (e: Exception) {
-//                withContext(Dispatchers.Main) {
-//                    _error.postValue(e.localizedMessage)
-//                }
-//            }
-//        }
-//    }
+    override fun getMovieDetailDb(movieId: String) {
+        launch {
+            val result = useCase.getMovieDetailByMovieId(movieId.toInt())
+            withContext(Dispatchers.Main) {
+                when (result) {
+                    is ResultState.Success -> _resultDetailFromDb.postValue(result.data)
+                    is ResultState.Error -> _error.postValue(result.error)
+                }
+            }
+        }
+    }
+
+    override fun insertMovieToDb(movieEntity: MovieEntity) {
+        launch {
+            try {
+                useCase.insertMovieToDb(movieEntity)
+                withContext(Dispatchers.Main) {
+                    _resultInsertMovieToDb.postValue(true)
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    _error.postValue(e.localizedMessage)
+                }
+            }
+        }
+    }
+
+    override fun deleteMovieFromDb(movieEntity: MovieEntity) {
+        launch {
+            try {
+                useCase.deleteMovieFromDb(movieEntity)
+                withContext(Dispatchers.Main) {
+                    _resultDeleteMovieFromDb.postValue(true)
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    _error.postValue(e.localizedMessage)
+                }
+            }
+        }
+    }
 }
