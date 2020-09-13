@@ -4,6 +4,7 @@ import android.content.Context
 import com.anggitprayogo.movon.di.module.AppModule
 import com.anggitprayogo.movon.di.module.ViewModelModule
 import com.anggitprayogo.movon.feature.detail.MovieDetailActivity
+import com.anggitprayogo.movon.feature.favourite.FavouriteActivity
 import com.anggitprayogo.movon.feature.main.MainActivity
 import dagger.BindsInstance
 import dagger.Component
@@ -31,4 +32,6 @@ interface AppComponent {
     fun inject(activity: MainActivity)
 
     fun inject(activity: MovieDetailActivity)
+
+    fun inject(activity: FavouriteActivity)
 }

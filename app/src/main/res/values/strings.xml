@@ -11,4 +11,7 @@
     <string name="message_empty_reviews_body">Hmm, there is no reviews</string>
     <string name="message_success_add_movie_from_favourite">Success add to favourite</string>
     <string name="message_success_remove_movie_from_favourite">Success remove from favourite</string>
+    <string name="message_empty_favourite_header">Yawn, You don\'t have favourite movie yet.</string>
+    <string name="message_empty_favourite_body">Let\'s find interesting movie in this app</string>
+    <string name="favourite_list">Favourite Movie</string>
 </resources>
