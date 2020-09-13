@@ -1,5 +1,6 @@
 package com.anggitprayogo.movon.feature.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.anggitprayogo.movon.BaseApplication
 import com.anggitprayogo.movon.data.remote.MoviesResponse
 import com.anggitprayogo.movon.databinding.ActivityMainBinding
+import com.anggitprayogo.movon.feature.favourite.FavouriteActivity
 import com.anggitprayogo.movon.feature.main.adapter.NowPlayingMovieAdapter
 import com.anggitprayogo.movon.feature.main.adapter.PopularMovieAdapter
 import com.anggitprayogo.movon.feature.main.adapter.TopRatedMovieAdapter
@@ -38,6 +40,16 @@ class MainActivity : BaseActivity() {
         initRecyclerView()
         observeViewModel()
         onActionSwipeListener()
+        onActionClickListener()
+    }
+
+    private fun onActionClickListener() {
+        with(binding){
+            ivFavourite.setOnClickListener {
+                val intent = Intent(this@MainActivity, FavouriteActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 
     private fun onActionSwipeListener() {
