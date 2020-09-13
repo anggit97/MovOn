@@ -54,7 +54,7 @@
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="@dimen/dimen_56"
         android:fillViewport="true"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
@@ -199,16 +199,14 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardElevation="@dimen/dimen_7"
         android:layout_gravity="bottom">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"
-            android:paddingStart="@dimen/spacing_horizontal_screen"
-            android:paddingTop="@dimen/spacing_vertical_screen"
-            android:paddingEnd="@dimen/spacing_horizontal_screen"
-            android:paddingBottom="@dimen/spacing_vertical_screen">
+            android:padding="@dimen/dimen_16">
 
             <ImageView
                 android:id="@+id/ivShare"

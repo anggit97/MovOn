@@ -22,7 +22,7 @@
     <dimen name="button_height_short">32dp</dimen>
     <dimen name="bottom_nav_size">56dp</dimen>
     <dimen name="radius_bg_home">30dp</dimen>
-    <dimen name="icon_size">20dp</dimen>
+    <dimen name="icon_size">24dp</dimen>
     <dimen name="banner_height">150dp</dimen>
     <dimen name="banner_detail_height">200dp</dimen>
     <dimen name="bg_home_height">150dp</dimen>
@@ -67,4 +67,5 @@
     <dimen name="bottom_sheet_corner_radius">16dp</dimen>
     <dimen name="bottom_sheet_top_padding">8dp</dimen>
     <dimen name="dimen_collapsing_toolbar">300dp</dimen>
+    <dimen name="dimen_56">56dp</dimen>
 </resources>
