@@ -21,6 +21,7 @@ import com.eoa.tech.core.util.ext.load
 import com.eoa.tech.core.util.ext.setGone
 import com.eoa.tech.core.util.ext.setVisible
 import com.eoa.tech.core.util.ext.toast
+import com.eoa.tech.core.util.state.LoaderState
 import javax.inject.Inject
 
 class MovieDetailActivity : BaseActivity() {
@@ -164,6 +165,16 @@ class MovieDetailActivity : BaseActivity() {
                 if (it) {
                     movieId?.let { viewModel.getMovieDetailDb(it) }
                     toast(getString(R.string.message_success_remove_movie_from_favourite))
+                }
+            })
+
+            state.observe(this@MovieDetailActivity, {
+                it?.let {
+                    if (it is LoaderState.ShowLoading){
+                        binding.pbLoadingCenter.setVisible()
+                    }else{
+                        binding.pbLoadingCenter.setGone()
+                    }
                 }
             })
 
