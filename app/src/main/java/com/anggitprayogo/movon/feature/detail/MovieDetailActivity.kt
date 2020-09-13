@@ -3,11 +3,16 @@ package com.anggitprayogo.movon.feature.detail
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.anggitprayogo.movon.BaseApplication
 import com.anggitprayogo.movon.R
 import com.anggitprayogo.movon.data.local.entity.MovieEntity
 import com.anggitprayogo.movon.data.remote.MovieDetail
+import com.anggitprayogo.movon.data.remote.MovieReviews
+import com.anggitprayogo.movon.data.remote.Review
 import com.anggitprayogo.movon.databinding.ActivityMovieDetailBinding
+import com.anggitprayogo.movon.feature.detail.adapter.ReviewsAdapter
 import com.eoa.tech.core.base.BaseActivity
 import com.eoa.tech.core.util.ext.load
 import com.eoa.tech.core.util.ext.toast
@@ -25,6 +30,8 @@ class MovieDetailActivity : BaseActivity() {
 
     private var movieId: String? = null
 
+    private val reviewsAdapter: ReviewsAdapter by lazy { ReviewsAdapter() }
+    private var reviewsList = mutableListOf<Review>()
 
     private lateinit var binding: ActivityMovieDetailBinding
 
@@ -36,9 +43,18 @@ class MovieDetailActivity : BaseActivity() {
         handleIntent()
         initViewModel()
         observeViewModel()
-//        initListener()
+        initRecyclerViewReviews()
         fetchData()
     }
+
+    private fun initRecyclerViewReviews() {
+        with(binding){
+            rvReviews.adapter = reviewsAdapter
+            rvReviews.layoutManager = LinearLayoutManager(this@MovieDetailActivity, LinearLayoutManager.VERTICAL, false)
+            rvReviews.addItemDecoration(DividerItemDecoration(this@MovieDetailActivity, LinearLayoutManager.VERTICAL))
+        }
+    }
+
 
     private fun fetchData() {
         movieId?.let {
@@ -53,6 +69,10 @@ class MovieDetailActivity : BaseActivity() {
                 it?.let { handleStateMovieDetail(it) }
             })
 
+            resultReviews.observe(this@MovieDetailActivity, {
+                it?.let { handleStateReviews(it) }
+            })
+
             viewModel.networkError.observe(this@MovieDetailActivity, {
                 it?.let { toast(it) }
             })
@@ -60,6 +80,28 @@ class MovieDetailActivity : BaseActivity() {
             viewModel.error.observe(this@MovieDetailActivity, {
                 it?.let { toast(it) }
             })
+        }
+    }
+
+    private fun handleStateReviews(reviews: MovieReviews) {
+        with(binding){
+            handleReviewEmptyState(reviews)
+            tvReviewTotal.text = reviews.results.size.toString()
+            reviewsList.clear()
+            reviewsList.addAll(reviews.results.toMutableList())
+            reviewsAdapter.setItems(reviewsList)
+        }
+    }
+
+    private fun handleReviewEmptyState(reviews: MovieReviews) {
+        with(binding){
+//            if (reviews.results.isEmpty()){
+//                rvReviews.setGone()
+//                viewEmpty.setVisible()
+//            }else{
+//                rvReviews.setVisible()
+//                viewEmpty.setGone()
+//            }
         }
     }
 
