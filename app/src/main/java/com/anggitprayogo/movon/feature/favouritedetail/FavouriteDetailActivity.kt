@@ -38,6 +38,19 @@ class FavouriteDetailActivity : BaseActivity() {
         fetchData()
         observeViewModel()
         initListner()
+        initToolbar()
+    }
+
+    private fun initToolbar() {
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.title = "Detail"
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun initListner() {

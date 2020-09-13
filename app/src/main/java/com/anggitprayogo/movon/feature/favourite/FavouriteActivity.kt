@@ -86,6 +86,11 @@ class FavouriteActivity : BaseActivity() {
         }
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        viewModel.fetchAllMovies()
+    }
+
     private fun initViewModel(){
         viewModel =
             ViewModelProviders.of(this, viewModelFactory)[FavouriteListViewModel::class.java]

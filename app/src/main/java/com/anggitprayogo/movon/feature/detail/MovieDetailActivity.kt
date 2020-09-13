@@ -1,6 +1,7 @@
 package com.anggitprayogo.movon.feature.detail
 
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -22,7 +23,7 @@ import com.eoa.tech.core.util.ext.setVisible
 import com.eoa.tech.core.util.ext.toast
 import javax.inject.Inject
 
-class MovieDetailActivity : BaseActivity(){
+class MovieDetailActivity : BaseActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -50,8 +51,16 @@ class MovieDetailActivity : BaseActivity(){
         initViewModel()
         observeViewModel()
         initRecyclerViewReviews()
+        initToolbar()
         fetchData()
         onActionClickListener()
+    }
+
+    private fun initToolbar() {
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.title = "Detail"
     }
 
     private fun onActionClickListener() {
@@ -64,6 +73,11 @@ class MovieDetailActivity : BaseActivity(){
                 showShareBottomSheet()
             }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun showShareBottomSheet() {
@@ -79,7 +93,7 @@ class MovieDetailActivity : BaseActivity(){
         bottomSheet?.show(supportFragmentManager, ShareDialogBottomSheetFragment.TAG)
     }
 
-    private fun setFavourite(){
+    private fun setFavourite() {
         if (favouriteActive) {
             movieEntity?.let { it1 -> viewModel.deleteMovieFromDb(it1) }
         } else {
