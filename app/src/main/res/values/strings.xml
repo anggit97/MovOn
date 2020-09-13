@@ -14,4 +14,6 @@
     <string name="message_empty_favourite_header">Yawn, You don\'t have favourite movie yet.</string>
     <string name="message_empty_favourite_body">Let\'s find interesting movie in this app</string>
     <string name="favourite_list">Favourite Movie</string>
+    <string name="share">Share</string>
+    <string name="content_share_tmp">%s \n\n %s</string>
 </resources>

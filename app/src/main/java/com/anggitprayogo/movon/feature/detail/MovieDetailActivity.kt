@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.anggitprayogo.movon.BaseApplication
 import com.anggitprayogo.movon.R
 import com.anggitprayogo.movon.data.local.entity.MovieEntity
+import com.anggitprayogo.movon.data.local.entity.ShareEntity
 import com.anggitprayogo.movon.data.remote.MovieDetail
 import com.anggitprayogo.movon.data.remote.MovieReviews
 import com.anggitprayogo.movon.data.remote.Review
 import com.anggitprayogo.movon.databinding.ActivityMovieDetailBinding
 import com.anggitprayogo.movon.feature.detail.adapter.ReviewsAdapter
+import com.anggitprayogo.movon.feature.share.ShareDialogBottomSheetFragment
 import com.eoa.tech.core.base.BaseActivity
 import com.eoa.tech.core.util.ext.load
 import com.eoa.tech.core.util.ext.setGone
@@ -20,7 +22,7 @@ import com.eoa.tech.core.util.ext.setVisible
 import com.eoa.tech.core.util.ext.toast
 import javax.inject.Inject
 
-class MovieDetailActivity : BaseActivity() {
+class MovieDetailActivity : BaseActivity(){
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -57,7 +59,24 @@ class MovieDetailActivity : BaseActivity() {
             ivFavourite.setOnClickListener {
                 setFavourite()
             }
+
+            ivShare.setOnClickListener {
+                showShareBottomSheet()
+            }
         }
+    }
+
+    private fun showShareBottomSheet() {
+        val bundle = Bundle()
+        val movieShareEntity = ShareEntity(
+            movieDetail?.title,
+            movieDetail?.overview
+        )
+        bundle.putParcelable(ShareDialogBottomSheetFragment.MovieData, movieShareEntity)
+
+        val bottomSheet = ShareDialogBottomSheetFragment().newInstance()
+        bottomSheet?.arguments = bundle
+        bottomSheet?.show(supportFragmentManager, ShareDialogBottomSheetFragment.TAG)
     }
 
     private fun setFavourite(){
