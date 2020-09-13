@@ -47,8 +47,6 @@
     <dimen name="dimen_50">50dp</dimen>
     <dimen name="dimen_24">24dp</dimen>
     <dimen name="dimen_85">85dp</dimen>
-    <dimen name="bottom_sheet_corner_radius">16dp</dimen>
-    <dimen name="bottom_sheet_top_padding">8dp</dimen>
     <dimen name="notch_height">5dp</dimen>
     <dimen name="dimen_36">36dp</dimen>
     <dimen name="dimen_1">1dp</dimen>
@@ -66,4 +64,7 @@
     <dimen name="slide_title">30dp</dimen>
     <dimen name="slide_desc">16dp</dimen>
     <dimen name="desc_padding">40dp</dimen>
+    <dimen name="bottom_sheet_corner_radius">16dp</dimen>
+    <dimen name="bottom_sheet_top_padding">8dp</dimen>
+    <dimen name="dimen_collapsing_toolbar">300dp</dimen>
 </resources>
