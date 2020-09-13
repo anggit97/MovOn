@@ -12,8 +12,10 @@ Movon DB App uses a number of open source projects and propose architecture to w
 * Room DB - Presistent library
 * MVVM - a structural design pattern that separates objects into three distinct groups: Models hold application data
 * Clean Architecture - Practical Software Architecture Solutions from the Legendary Robert C. Martin (“Uncle Bob”) By applying universal rules of software architecture
-* Unit Test - Make your code safer
+* Unit Test (JUnit 4) - Make your code safer
+* Some Jetpack library
 * And More..
+
 
 And of course Movie Db App itself is open source with a public repo
  on GitHub.

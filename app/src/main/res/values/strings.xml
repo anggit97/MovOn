@@ -16,4 +16,5 @@
     <string name="favourite_list">Favourite Movie</string>
     <string name="share">Share</string>
     <string name="content_share_tmp">%s \n\n %s</string>
+    <string name="genre_release_date">Release Date : %s | %s</string>
 </resources>

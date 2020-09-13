@@ -72,6 +72,11 @@ class MovieDetailActivity : BaseActivity() {
             ivShare.setOnClickListener {
                 showShareBottomSheet()
             }
+
+            swipeRefreshLayout.setOnRefreshListener {
+                swipeRefreshLayout.isRefreshing = false
+                fetchData()
+            }
         }
     }
 
@@ -212,7 +217,8 @@ class MovieDetailActivity : BaseActivity() {
         with(binding) {
             movieDetail = movie
             ivBannerMovie.load(movie.getBannerMovie())
-            tvMovieMetaData.text = movie.getMetaData()
+            tvMovieMetaData.text =
+                getString(R.string.genre_release_date, movie.releaseDate, movie.getMetaData())
             tvMovieTitle.text = movie.originalTitle
             tvImdbRating.text = getString(
                 R.string.imdb_rating_template,

@@ -141,7 +141,7 @@ class FavouriteDetailActivity : BaseActivity() {
         with(binding) {
             movieEntity?.let { movie ->
                 ivBannerMovie.load(movie.bannerUrl ?: "")
-                tvMovieMetaData.text = movie.genres
+                tvMovieMetaData.text = getString(R.string.genre_release_date, movie.releaseDate, movie.genres)
                 tvMovieTitle.text = movie.title
                 tvImdbRating.text = getString(
                     R.string.imdb_rating_template,
